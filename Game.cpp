@@ -61,8 +61,8 @@ class Player {
         // player's parameters like health, sprite...
         unsigned int health;
         unsigned int maxHealth;
-        unsigned int score;
 
+        sf::Text score;
         sf::Sprite PSprite;
         sf::Texture *PTexture;
         // list of bullets
@@ -130,8 +130,11 @@ class Player {
 
         }
 
-        void SetScore( unsigned int _score ) { this->score = _score; }
-        unsigned int GetScore() { return this->score; }
+        void setScore( int count ) {
+
+        }
+
+       sf::Text getScore() { return this->score; }
 
         ~Player() {}
 
@@ -210,6 +213,7 @@ int main() {
     sf::Font myFont2;
     if( !myFont2.loadFromFile( "source/fonts/from-cartoon-blocks/From Cartoon Blocks.ttf" ) )
         printf( "Could Not Open Font \n" );
+
     // han criyina text object
     sf::Text myText;
     // 3tinah font
@@ -245,18 +249,8 @@ int main() {
     std::vector<Enemy> Enemies;
     sf::Sprite enemySprite;
 
-    std::string score_str = std::to_string( score );
-    std::string score_text = "score: " + score_str;
-
-    //std::stringstream ss;  // #include <sstream>
-    //ss << score;
-
+    std::string score_str, score_text;
     sf::Text Score;
-    Score.setCharacterSize( 42 );
-    Score.setFont( myFont2 );
-    Score.setStyle( sf::Text::Italic );
-    Score.setString( score_text );
-    Score.setPosition( sf::Vector2f( 620.0f, 530.0f ) );
 
     // waiting when the window is opened
     while( MyWindow.isOpen() ) {
@@ -324,9 +318,9 @@ int main() {
         MyWindow.clear( sf::Color( 110, 100, 190, 240 ) );
 
         // DRAW HERE
-        MyWindow.draw( Score );
-        MyWindow.draw( myText );
-        MyWindow.draw( MyPlayer.getSprite() );
+        //MyWindow.draw( Score );
+        //MyWindow.draw( myText );
+        //MyWindow.draw( MyPlayer.getSprite() );
 
         // draw bullets
         for( size_t i = 0; i < MyBullets.size(); i++ ) {
@@ -366,22 +360,6 @@ int main() {
                     Enemies.erase( Enemies.begin() + i );
 
                     score++;
-                    //std::string score_str = std::to_string( score );
-                    //std::string score_text = "score: " + score_str;
-
-                    /*sf::Text Score;
-                    Score.setCharacterSize( 42 );
-                    Score.setFont( myFont2 );
-                    Score.setStyle( sf::Text::Italic );
-                    Score.setString( score_text );
-                    Score.setPosition( sf::Vector2f( 620.0f, 530.0f ) );
-                    */
-                }
-
-                if( Enemies.size() <= 0 ) {
-
-                    score++;
-                    printf( "%s\n", "no enemy" );
 
                 }
 
@@ -390,6 +368,20 @@ int main() {
             MyWindow.draw( Enemies[i].getSprite() );
 
         }
+
+        score_str = std::to_string( score );
+        score_text = "score: " + score_str;
+
+        Score.setCharacterSize( 42 );
+        Score.setFont( myFont2 );
+        Score.setStyle( sf::Text::Italic );
+        Score.setString( score_text );
+        Score.setPosition( sf::Vector2f( 620.0f, 530.0f ) );
+        if( score_str.length() >= 3 ) { Score.setPosition( sf::Vector2f( 600.0f, 530.0f ) ); }
+
+        MyWindow.draw( Score );
+        MyWindow.draw( myText );
+        MyWindow.draw( MyPlayer.getSprite() );
         // display everything
         MyWindow.display();
 
