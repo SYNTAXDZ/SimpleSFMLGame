@@ -62,11 +62,8 @@ class Player {
         unsigned int health;
         unsigned int maxHealth;
 
-        sf::Text score;
         sf::Sprite PSprite;
         sf::Texture *PTexture;
-        // list of bullets
-        std::vector<Bullet> bullets;
 
     public:
 
@@ -129,12 +126,6 @@ class Player {
             }
 
         }
-
-        void setScore( int count ) {
-
-        }
-
-       sf::Text getScore() { return this->score; }
 
         ~Player() {}
 
