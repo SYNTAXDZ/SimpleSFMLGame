@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <cmath>
 
-
+#include "GUI.h"
 // normalize:
 /*
 
@@ -308,11 +308,6 @@ int main() {
         // clearing the window
         MyWindow.clear( sf::Color( 110, 100, 190, 240 ) );
 
-        // DRAW HERE
-        //MyWindow.draw( Score );
-        //MyWindow.draw( myText );
-        //MyWindow.draw( MyPlayer.getSprite() );
-
         // draw bullets
         for( size_t i = 0; i < MyBullets.size(); i++ ) {
 
@@ -368,7 +363,7 @@ int main() {
         Score.setStyle( sf::Text::Italic );
         Score.setString( score_text );
         Score.setPosition( sf::Vector2f( 620.0f, 530.0f ) );
-        if( score_str.length() >= 3 ) { Score.setPosition( sf::Vector2f( 600.0f, 530.0f ) ); }
+        if( score_str.length() >= 3 ) { Score.setPosition( sf::Vector2f( 592.0f, 530.0f ) ); }
 
         MyWindow.draw( Score );
         MyWindow.draw( myText );
